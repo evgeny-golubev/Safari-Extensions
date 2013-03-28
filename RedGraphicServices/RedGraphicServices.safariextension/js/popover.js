@@ -87,13 +87,14 @@ var rgs = {
 		for (var i = len; i--;)
 		{
 			popovers[i].width = 215; 
-			popovers[i].height = $('body').height()-20;
+			popovers[i].height = $('body').height()-10;
 		}
 	},
 	
 	process_service: function(service){
 		var self = this;
-		var html = '<li class="sname" onclick="rgs.popover_hide()">'+
+		var html = '<ul class="service-list service-'+service+'">'+
+			'<li class="sname" onclick="rgs.popover_hide()">'+
 			'<a href="'+rgs.options[service].base+'">'+
 			'<div class="right">'+rgs.options[service].id+'</div>'+
 			'<div class="left">'+rgs.options[service].title+'</div>'+
@@ -104,7 +105,9 @@ var rgs = {
 			html += self.generate_link(service, value.link, value.title);
 		});	
 		
-		$('.service-'+service).append(html);
+		html += '</ul>';
+		
+		$('body').append(html);
 	},
 	
 	generate_link: function(service, url, title){
@@ -128,7 +131,7 @@ var rgs = {
 				this.process_service('highrise');
 			}
 		}else{
-			$('body').prepend('Please, fill settings.');
+			$('body').html('Please, fill settings.');
 			rgs.reload();
 		}
 								
@@ -139,7 +142,7 @@ var rgs = {
 	{
 		delay = setTimeout(function(){
 			rgs.build();
-		}, 60000);
+		}, 6000);
 	},
 	
 	init: function(options)
