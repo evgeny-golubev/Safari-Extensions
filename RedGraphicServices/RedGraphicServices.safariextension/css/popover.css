@@ -5,7 +5,8 @@ a:hover {color: #0000ff; text-decoration: underline;}
 
 ul, li	{margin: 0; padding: 0; list-style: none}
 
-.service-list {margin: 5px 10px; position: relative; border-top: 1px dashed #d2d2d2;}
+.service-list {margin: 5px 10px; position: relative; border-bottom: 1px dashed #d2d2d2; padding-bottom: 5px;}
+.service-list:last-child {border-bottom: 0; padding-bottom: 0;}
 	.service-list li {margin: 3px 0; cursor: pointer}
 	
 		.service-list li .left {float: left; width: 145px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
@@ -13,6 +14,5 @@ ul, li	{margin: 0; padding: 0; list-style: none}
 	
 		.service-list li .clear {clear: both}
 		
-	.service-list li.sname {margin: 8px 0px 5px 0px; border-bottom: 1px dashed #d2d2d2; padding: 5px 0;}
-		.service-list li.sname:first-child {border-top: 0; padding-top: 0}	
+	.service-list li.sname {margin: 8px 0px 5px 0px;}
 		.service-list li.sname .left {font-weight:bold; width: 140px !important}

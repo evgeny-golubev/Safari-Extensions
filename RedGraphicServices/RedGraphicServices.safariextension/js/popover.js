@@ -1,12 +1,15 @@
-var rgsdefault = false;
+var is_debug = false;
 
 if (typeof safari === 'undefined') {
-	rgsdefault = true;
+	is_debug = true;
 	var safari = {
 			extension: {
 				popovers: [],
-				secureSettings: {
+				settings: {
+					delay: 15,
 					basecamp_id: 1935861,
+					/*basecamp_login: '',
+					basecamp_password: '',*/
 					harvest_subdomain: 'redgraphic',
 					highrise_subdomain: 'redgraphic'
 				}
@@ -16,19 +19,38 @@ if (typeof safari === 'undefined') {
 
 var rgs = {
 	options: {
-		default: false,
+		defaults: {
+			debug: false,
+			delay: 15
+		},
 		basecamp: {
 			title: 'Basecamp',
 			id: null,
 			base: null,
+			/*api: {
+				path: '/api/v1',
+				login: null,
+				password: null
+			},*/
 			links: [
+				/*{
+					title: 'Projects',
+					link: '/',
+					api: {
+						id: 'projects',
+						path: '/projects.json',
+						callback: function(data){
+							console.log(data);
+						}
+					}
+				},*/
 				{
 					title: 'Everything',
-					link: '/everything'
+					link: '/everything',
 				},
 				{
 					title: 'Me',
-					link: '/people/me'
+					link: '/people/me',
 				}
 			]
 		},
@@ -39,7 +61,7 @@ var rgs = {
 			links: [
 				{
 					title: 'Timesheet',
-					link: '/time'
+					link: '/time',
 				}
 			]
 		},
@@ -50,19 +72,19 @@ var rgs = {
 			links: [
 				{
 					title: 'Contacts',
-					link: '/parties'
+					link: '/parties',
 				},
 				{
 					title: 'Tasks',
-					link: '/tasks'
+					link: '/tasks',
 				},
 				{
 					title: 'Cases',
-					link: '/kases'
+					link: '/kases',
 				},
 				{
 					title: 'Deals',
-					link: '/deals'
+					link: '/deals',
 				}
 			]
 		}
@@ -95,14 +117,18 @@ var rgs = {
 		var self = this;
 		var html = '<ul class="service-list service-'+service+'">'+
 			'<li class="sname" onclick="rgs.popover_hide()">'+
-			'<a href="'+rgs.options[service].base+'">'+
+			'<a href="https://'+rgs.options[service].base+'">'+
 			'<div class="right">'+rgs.options[service].id+'</div>'+
 			'<div class="left">'+rgs.options[service].title+'</div>'+
 			'<div class="clear"></div>'+
 			'</a></li>';
 				
 		$.each(rgs.options[service].links, function(index, value){
-			html += self.generate_link(service, value.link, value.title);
+			/*if(value.api != undefined && rgs.options[service].api.login != null){
+				html += self.generate_link_api(service, value.link, value.title, value.api);	
+			}else{*/
+				html += self.generate_link(service, value.link, value.title);	
+			/*}*/
 		});	
 		
 		html += '</ul>';
@@ -110,16 +136,39 @@ var rgs = {
 		$('body').append(html);
 	},
 	
+	generate_link_api: function(service, url, title, api){
+		$.ajax({
+		    type: "GET",
+		    url: 'https://'+rgs.options[service].base + rgs.options[service].api.path + api.path,
+		    username: rgs.options[service].api.login,
+		    password: rgs.options[service].api.password,
+		    dataType: 'json',
+		    async: false,
+		    headers: {
+		    	'User-Agent': 'RedGraphicServices (https://github.com/m0nah/Safari-Extensions/tree/master/RedGraphicServices)'
+		    },
+		    success: function(json) {
+		       console.dir(json);
+		    },
+		    error: function(e) {
+		       console.log(e.message);
+		    }
+		})
+		return '<li onclick="rgs.popover_hide()" class="service-'+service+'-'+api.id+'">'+
+			'<a href="https://'+rgs.options[service].base+url+'">'+title+
+			'<div class="clear"></div>'+
+			'</a></li>';
+	},
+	
 	generate_link: function(service, url, title){
 		return '<li onclick="rgs.popover_hide()">'+
-			'<a href="'+rgs.options[service].base+url+'">'+title+
+			'<a href="https://'+rgs.options[service].base+url+'">'+title+
 			'<div class="clear"></div>'+
 			'</a></li>';
 	},
 	
 	build: function()
 	{	
-		console.log(this.options);
 		if(this.options.harvest.id != undefined || this.options.highrise.id != undefined || this.options.basecamp.id != undefined){
 			if(this.options.basecamp.id != undefined){
 				this.process_service('basecamp');
@@ -142,30 +191,37 @@ var rgs = {
 	{
 		delay = setTimeout(function(){
 			rgs.build();
-		}, 6000);
+		}, this.options.defaults.delay * 60000);
 	},
 	
 	init: function(options)
 	{
 		$.extend(true, this.options, options);
-		this.options.basecamp.base = 'https://basecamp.com/'+this.options.basecamp.id;
-		this.options.harvest.base = 'https://'+this.options.harvest.id+'.harvestapp.com';
-		this.options.highrise.base = 'https://'+this.options.highrise.id+'.highrisehq.com';
+		this.options.basecamp.base = 'basecamp.com/'+this.options.basecamp.id;
+		this.options.harvest.base = this.options.harvest.id+'.harvestapp.com';
+		this.options.highrise.base = this.options.highrise.id+'.highrisehq.com';
 		this.build();
 	}
 };
 	
 $(document).ready(function(){
 	rgs.init({
-		default: rgsdefault,
+		defaults: {
+			debug: is_debug,
+			delay: safari.extension.settings.delay
+		},
 		basecamp: {
-			id: safari.extension.secureSettings.basecamp_id
+			id: safari.extension.settings.basecamp_id,
+			/*api: {
+				login: safari.extension.settings.basecamp_login,
+				password: safari.extension.settings.basecamp_password
+			}*/
 		},
 		harvest: {
-			id: safari.extension.secureSettings.harvest_subdomain
+			id: safari.extension.settings.harvest_subdomain
 		},
 		highrise: {
-			id: safari.extension.secureSettings.highrise_subdomain
+			id: safari.extension.settings.highrise_subdomain
 		}
 	});
 });
