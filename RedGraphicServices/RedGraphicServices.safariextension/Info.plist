@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Evgeny Golubev</string>
 	<key>Builder Version</key>
-	<string>8536.28.10</string>
+	<string>8537.43.58</string>
 	<key>CFBundleDisplayName</key>
 	<string>Red Graphic Services</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>CFBundleVersion</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Popovers</key>
@@ -54,7 +54,17 @@
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>
-		<dict/>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>js/libs/jquery.js</string>
+				<string>js/fixes.js</string>
+			</array>
+		</dict>
+		<key>Whitelist</key>
+		<array>
+			<string>https://basecamp.com/*</string>
+		</array>
 	</dict>
 	<key>Description</key>
 	<string>Button with main Red Graphic services</string>
@@ -64,8 +74,14 @@
 	<dict>
 		<key>Website Access</key>
 		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>*.basecamp.com</string>
+			</array>
+			<key>Include Secure Pages</key>
+			<true/>
 			<key>Level</key>
-			<string>None</string>
+			<string>Some</string>
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
