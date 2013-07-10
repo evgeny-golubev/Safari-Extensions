@@ -4,42 +4,43 @@ function BasecampFixes() {
 	$(document).ready(function(){
 		var addDownloadAllButtons = function() {
 			$('ul.attachments').each(function() {
-				if ($(this).find('li.download-all').length === 0 && $(this).find('li').length > 1) {
-					$(this).append('<li class="download-all">&darr; <a class="decorated" href="#">Download all of these files at once</a></li>');
-					$(this).find('li.download-all a').click(function(){
-						var downloads = [];
-
-						$(this).parent().parent().find('li:not(.download-all)>a').each(function() {
-							var path = url('path', $(this).attr('href'));
-							path = path.split('/');
-							path.pop();
-							path = path.join('/')+'/download';
-							downloads.push(path);
-						});
-
-						downloadIFrame(downloads);
-
-						return false;
-					});
+				if (!$(this).next().hasClass('download-all-files')) {
+					$(this).after('<p class="download-all-files"><a class="decorated" href="#">Download all of these files at once</a> &darr;</p>');
 				}
 			});
 
 			$('div.image_grid_view').each(function() {
-				if ($(this).parent().find('p.download-all').length === 0) {
-					$(this).parent().append('<p class="download-all">&darr; <a class="decorated" href="#">Download all of these images at once</a></p>');
-					$(this).parent().find('p.download-all a').click(function(){
-						var downloads = [];
-
-						$(this).parent().parent().find('div.image_grid_view tr.images .thumbnail>a').each(function() {
-							var path = $(this).attr('href')+'/download';
-							downloads.push(path);
-						});
-
-						downloadIFrame(downloads);
-
-						return false;
-					});
+				if (!$(this).next().hasClass('download-all-images')) {
+					$(this).after('<p class="download-all-images"><a class="decorated" href="#">Download all of these images at once</a> &darr;</p>');
 				}
+			});
+
+			$('p.download-all-files a').click(function(){
+				var downloads = [];
+
+				$(this).parent().prev('ul.attachments').find('li > a').each(function() {
+					var path = url('path', $(this).attr('href'));
+					path = path.split('/');
+					path.pop();
+					path = path.join('/')+'/download';
+					downloads.push(path);
+				});
+
+				downloadIFrame(downloads);
+
+				return false;
+			});
+			$('p.download-all-images a').click(function(){
+				var downloads = [];
+
+				$(this).parent().prev('.image_grid_view').find('tr.images .thumbnail>a').each(function() {
+					var path = $(this).attr('href')+'/download';
+					downloads.push(path);
+				});
+
+				downloadIFrame(downloads);
+
+				return false;
 			});
 		};
 
