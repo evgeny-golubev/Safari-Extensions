@@ -46,11 +46,22 @@ var rgs = {
 				},*/
 				{
 					title: 'Everything',
-					link: '/everything',
+					link: '/everything'
 				},
 				{
 					title: 'Me',
-					link: '/people/me',
+					link: '/people/me'
+				}
+			]
+		},
+		backpack: {
+			title: 'Backpack',
+			id: null,
+			base: null,
+			links: [
+				{
+					title: 'Calendar',
+					link: '/calendar'
 				}
 			]
 		},
@@ -61,7 +72,7 @@ var rgs = {
 			links: [
 				{
 					title: 'Timesheet',
-					link: '/time',
+					link: '/time'
 				}
 			]
 		},
@@ -72,47 +83,47 @@ var rgs = {
 			links: [
 				{
 					title: 'Contacts',
-					link: '/parties',
+					link: '/parties'
 				},
 				{
 					title: 'Tasks',
-					link: '/tasks',
+					link: '/tasks'
 				},
 				{
 					title: 'Cases',
-					link: '/kases',
+					link: '/kases'
 				},
 				{
 					title: 'Deals',
-					link: '/deals',
+					link: '/deals'
 				}
 			]
 		}
 	},
-			
+
 	popover_hide: function()
 	{
 		var popovers = safari.extension.popovers,
 			len = popovers.length;
-			
+
 		for (var i = len; i--;)
 		{
 			popovers[i].hide();
 		}
 	},
-	
+
 	popover_resize: function()
 	{
 		var popovers = safari.extension.popovers,
 			len = popovers.length;
-			
+
 		for (var i = len; i--;)
 		{
-			popovers[i].width = 215; 
-			popovers[i].height = $('body').height()-10;
+			popovers[i].width = 215;
+			popovers[i].height = $('body').height()-15;
 		}
 	},
-	
+
 	process_service: function(service){
 		var self = this;
 		var html = '<ul class="service-list service-'+service+'">'+
@@ -122,68 +133,71 @@ var rgs = {
 			'<div class="left">'+rgs.options[service].title+'</div>'+
 			'<div class="clear"></div>'+
 			'</a></li>';
-				
+
 		$.each(rgs.options[service].links, function(index, value){
 			/*if(value.api != undefined && rgs.options[service].api.login != null){
-				html += self.generate_link_api(service, value.link, value.title, value.api);	
+				html += self.generate_link_api(service, value.link, value.title, value.api);
 			}else{*/
-				html += self.generate_link(service, value.link, value.title);	
+				html += self.generate_link(service, value.link, value.title);
 			/*}*/
-		});	
-		
+		});
+
 		html += '</ul>';
-		
+
 		$('body').append(html);
 	},
-	
+
 	generate_link_api: function(service, url, title, api){
 		$.ajax({
-		    type: "GET",
-		    url: 'https://'+rgs.options[service].base + rgs.options[service].api.path + api.path,
-		    username: rgs.options[service].api.login,
-		    password: rgs.options[service].api.password,
-		    dataType: 'json',
-		    async: false,
-		    headers: {
-		    	'User-Agent': 'RedGraphicServices (https://github.com/m0nah/Safari-Extensions/tree/master/RedGraphicServices)'
-		    },
-		    success: function(json) {
-		       console.dir(json);
-		    },
-		    error: function(e) {
-		       console.log(e.message);
-		    }
-		})
+			type: "GET",
+			url: 'https://'+rgs.options[service].base + rgs.options[service].api.path + api.path,
+			username: rgs.options[service].api.login,
+			password: rgs.options[service].api.password,
+			dataType: 'json',
+			async: false,
+			headers: {
+				'User-Agent': 'RedGraphicServices (https://github.com/m0nah/Safari-Extensions/tree/master/RedGraphicServices)'
+			},
+			success: function(json) {
+				console.dir(json);
+			},
+			error: function(e) {
+				console.log(e.message);
+			}
+		});
 		return '<li onclick="rgs.popover_hide()" class="service-'+service+'-'+api.id+'">'+
 			'<a href="https://'+rgs.options[service].base+url+'">'+title+
 			'<div class="clear"></div>'+
 			'</a></li>';
 	},
-	
+
 	generate_link: function(service, url, title){
 		return '<li onclick="rgs.popover_hide()">'+
 			'<a href="https://'+rgs.options[service].base+url+'">'+title+
 			'<div class="clear"></div>'+
 			'</a></li>';
 	},
-	
+
 	build: function()
-	{	
-		if(this.options.harvest.id != undefined || this.options.highrise.id != undefined || this.options.basecamp.id != undefined){
-			if(this.options.basecamp.id != undefined){
+	{
+		if(this.options.harvest.id !== undefined || this.options.highrise.id !== undefined || this.options.basecamp.id !== undefined){
+			if(this.options.basecamp.id !== undefined){
 				this.process_service('basecamp');
 			}
-			if(this.options.harvest.id != undefined){
+			if(this.options.backpack.id !== undefined){
+				this.process_service('backpack');
+			}
+			if(this.options.harvest.id !== undefined){
 				this.process_service('harvest');
 			}
-			if(this.options.highrise.id != undefined){
+			if(this.options.highrise.id !== undefined){
 				this.process_service('highrise');
 			}
 		}else{
 			$('body').html('Please, fill settings.');
 			rgs.reload();
 		}
-								
+
 		this.popover_resize();
 	},
 
@@ -193,17 +207,18 @@ var rgs = {
 			rgs.build();
 		}, this.options.defaults.delay * 60000);
 	},
-	
+
 	init: function(options)
 	{
 		$.extend(true, this.options, options);
 		this.options.basecamp.base = 'basecamp.com/'+this.options.basecamp.id;
+		this.options.backpack.base = this.options.harvest.id+'.backpackit.com';
 		this.options.harvest.base = this.options.harvest.id+'.harvestapp.com';
 		this.options.highrise.base = this.options.highrise.id+'.highrisehq.com';
 		this.build();
 	}
 };
-	
+
 $(document).ready(function(){
 	rgs.init({
 		defaults: {
@@ -211,11 +226,10 @@ $(document).ready(function(){
 			delay: safari.extension.settings.delay
 		},
 		basecamp: {
-			id: safari.extension.settings.basecamp_id,
-			/*api: {
-				login: safari.extension.settings.basecamp_login,
-				password: safari.extension.settings.basecamp_password
-			}*/
+			id: safari.extension.settings.basecamp_id
+		},
+		backpack: {
+			id: safari.extension.settings.backpack_subdomain
 		},
 		harvest: {
 			id: safari.extension.settings.harvest_subdomain

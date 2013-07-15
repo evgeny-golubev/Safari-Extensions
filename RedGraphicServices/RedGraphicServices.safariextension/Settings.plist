@@ -21,12 +21,22 @@
 		<string>TextField</string>
 	</dict>
 	<dict>
+		<key>Title</key>
+		<string>Backpack</string>
+		<key>Type</key>
+		<string>Group</string>
+	</dict>
+	<dict>
 		<key>DefaultValue</key>
-		<string></string>
+		<string>redgraphic</string>
 		<key>Key</key>
-		<string></string>
-		<key>Secure</key>
-		<false/>
+		<string>backpack_subdomain</string>
+		<key>Title</key>
+		<string>Subdomain</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+	<dict>
 		<key>Title</key>
 		<string>Harvest App</string>
 		<key>Type</key>
@@ -45,12 +55,6 @@
 		<string>TextField</string>
 	</dict>
 	<dict>
-		<key>DefaultValue</key>
-		<string></string>
-		<key>Key</key>
-		<string></string>
-		<key>Secure</key>
-		<false/>
 		<key>Title</key>
 		<string>Highrise App</string>
 		<key>Type</key>
@@ -69,12 +73,6 @@
 		<string>TextField</string>
 	</dict>
 	<dict>
-		<key>DefaultValue</key>
-		<string></string>
-		<key>Key</key>
-		<string></string>
-		<key>Secure</key>
-		<false/>
 		<key>Title</key>
 		<string>Extension Settings</string>
 		<key>Type</key>
