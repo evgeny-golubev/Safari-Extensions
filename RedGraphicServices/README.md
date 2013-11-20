@@ -1,4 +1,4 @@
-Harvest Time Tracker for Basecamp
+Red Graphic Services plugin
 =================
 
 ![Red Graphic Services plugin]

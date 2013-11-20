@@ -6,15 +6,15 @@
 	<array>
 		<dict>
 			<key>CFBundleIdentifier</key>
-			<string>com.evgeny.golubev.harvest4basecamp</string>
+			<string>com.evgeny.golubev.launchpad37signals</string>
 			<key>Developer Identifier</key>
 			<string>3VDA3ZUKA4</string>
 			<key>CFBundleVersion</key>
-			<string>1.5</string>
+			<string>1.0.1</string>
 			<key>CFBundleShortVersionString</key>
-			<string>1.5</string>
+			<string>1.0.1</string>
 			<key>URL</key>
-			<string>https://github.com/m0nah/Safari-Extensions/raw/master/Harvest4Basecamp/Harvest4Basecamp.safariextz</string>
+			<string>https://github.com/m0nah/Safari-Extensions/raw/master/37signalsLaunchpad/37signalsLaunchpad.safariextz</string>
 		</dict>
 	</array>
 </dict>

@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Evgeny Golubev</string>
 	<key>Builder Version</key>
-	<string>8537.43.58</string>
+	<string>9537.73.9</string>
 	<key>CFBundleDisplayName</key>
 	<string>Harvest Time Tracker for Basecamp</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>CFBundleVersion</key>
-	<string>1.4</string>
+	<string>1.5</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
@@ -24,7 +24,7 @@
 		<dict>
 			<key>Start</key>
 			<array>
-				<string>js/libs/jquery.js</string>
+				<string>js/jquery.js</string>
 				<string>js/basecamp.js</string>
 			</array>
 		</dict>

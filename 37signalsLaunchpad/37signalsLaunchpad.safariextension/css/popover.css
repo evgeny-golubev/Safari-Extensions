@@ -1,0 +1,18 @@
+body {margin: 0; padding: 0; font-family: Helvetica; font-size: 11px;}
+
+a {color: #000; text-decoration: none;}
+a:hover {color: #0000ff; text-decoration: underline;}
+
+ul, li	{margin: 0; padding: 0; list-style: none}
+
+.service-list {margin: 5px 10px; position: relative; border-bottom: 1px dashed #d2d2d2; padding-bottom: 5px;}
+.service-list:last-child {border-bottom: 0; padding-bottom: 0;}
+	.service-list li {margin: 3px 0; cursor: pointer}
+
+		.service-list li .left {float: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+		.service-list li .right {float: right; padding: 1px 4px; border-radius: 3px; font-size: 9px; background: rgba(0, 0, 0, 0.3); color: #fff;  text-shadow: none;-webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 1px rgba(255, 255, 255, 0.8);}
+
+		.service-list li .clear {clear: both}
+
+	.service-list li.sname {margin: 8px 0px 5px 0px; padding-bottom: 5px; border-bottom: 1px dashed #d2d2d2;}
+		.service-list li.sname .left {font-weight:bold; width: 140px !important}
