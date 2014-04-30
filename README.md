@@ -14,3 +14,8 @@ Extentions for Safari
 (https://github.com/m0nah/Safari-Extensions/tree/master/37signalsLaunchpad)
 
 [More information about 37signals Launchpad](https://github.com/m0nah/Safari-Extensions/tree/master/37signalsLaunchpad)
+
+### Donate:
+If you liked this extentions, you can donate to support it!
+
+[![Paypal donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R3TQZNMYEJSL6)
