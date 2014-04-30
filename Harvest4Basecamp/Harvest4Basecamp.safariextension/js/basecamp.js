@@ -111,6 +111,7 @@ function H4BMain(){
 
         var addButtons = function() {
         	var newTimers = false;
+
             $(itemSelector).each(function() {
                 if (!isButtonAdded(this)) {
                     var data = findIdsForItem(this);
@@ -120,7 +121,8 @@ function H4BMain(){
                     }
                 }
             });
-            // if(newTimers)
+
+            if(newTimers)
             {
 			    div = $("" + (nsId('messaging'))).get(0);
 			    if (div) {
@@ -133,7 +135,11 @@ function H4BMain(){
             if (!(item instanceof jQuery)) {
                 item = $(item);
             }
-            element = $(item).before('<div class="harvest-timer"></div>').data(data);
+            var timer = $('<div class="harvest-timer"></div>')
+                        .attr('data-account', JSON.stringify(data.account))
+                        .attr('data-project', JSON.stringify(data.project))
+                        .attr('data-item', JSON.stringify(data.item));
+            var element = $(item).before(timer);
         };
 
         var isItemComplete = function(item) {
@@ -174,6 +180,23 @@ function H4BMain(){
         }, 250);
     });
 
+    JSON.stringify = JSON.stringify || function (obj) {
+        var t = typeof (obj);
+        if (t != "object" || obj === null) {
+            if (t == "string") obj = '"'+obj+'"';
+            return String(obj);
+        }
+        else {
+            var n, v, json = [], arr = (obj && obj.constructor == Array);
+            for (n in obj) {
+                v = obj[n]; t = typeof(v);
+                if (t == "string") v = '"'+v+'"';
+                else if (t == "object" && v !== null) v = JSON.stringify(v);
+                json.push((arr ? "" : '"' + n + '":') + String(v));
+            }
+            return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+        }
+    };
 }
 
 H4BMain();
