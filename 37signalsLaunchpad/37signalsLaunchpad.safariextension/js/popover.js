@@ -36,16 +36,21 @@ var popover_37signals = {
 				'</li>'
 		);
 
-		$.get('https://launchpad.37signals.com', function(data) {
+		$.get('https://launchpad.37signals.com/basecamp', function(data) {
 			var accounts = $(data).find('.accounts .account');
 
 			if(accounts.length){
 				accounts.each(function(index) {
+					var id = $(this).find('a:first').attr('href');
+					id = id.replace('/id/users/', '', 'gi');
+					id = id.replace('/goto', '', 'gi');
+					var title = $(this).find('a:first div.name div:first').text();
+					var href = '/users/' + id;
 					$('.service-list').append(
 						self.generate_link(
-							$(this).find('a:first').attr('href'),
-							$(this).find('a:first div.name div:first').text(),
-							$(this).parents('.product').attr('id')
+							href,
+							title,
+							id
 						)
 					);
 				});
