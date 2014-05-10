@@ -22,9 +22,8 @@
 	<dict>
 		<key>Scripts</key>
 		<dict>
-			<key>Start</key>
+			<key>End</key>
 			<array>
-				<string>js/jquery.js</string>
 				<string>js/basecamp.js</string>
 			</array>
 		</dict>
