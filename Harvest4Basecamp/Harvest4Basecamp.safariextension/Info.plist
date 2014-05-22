@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.7</string>
+	<string>1.8</string>
 	<key>CFBundleVersion</key>
-	<string>1.7</string>
+	<string>1.8</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
@@ -52,8 +52,8 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>https://github.com/m0nah/Safari-Extensions/raw/master/Harvest4Basecamp/update.plist</string>
+	<string>https://github.com/evgeny-golubev/Safari-Extensions/raw/master/Harvest4Basecamp/update.plist</string>
 	<key>Website</key>
-	<string>https://github.com/m0nah/Safari-Extensions/tree/master/Harvest4Basecamp</string>
+	<string>https://github.com/evgeny-golubev/Safari-Extensions/tree/master/Harvest4Basecamp</string>
 </dict>
 </plist>

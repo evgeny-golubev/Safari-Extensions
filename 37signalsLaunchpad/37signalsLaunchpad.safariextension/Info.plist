@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.2</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.2</string>
+	<string>1.1</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Popovers</key>
@@ -75,8 +75,8 @@
 		</dict>
 	</dict>
 	<key>Update Manifest URL</key>
-	<string>https://github.com/m0nah/Safari-Extensions/raw/master/37signalsLaunchpad/update.plist</string>
+	<string>https://github.com/evgeny-golubev/Safari-Extensions/raw/master/37signalsLaunchpad/update.plist</string>
 	<key>Website</key>
-	<string>https://github.com/m0nah/Safari-Extensions/tree/master/37signalsLaunchpads</string>
+	<string>https://github.com/evgeny-golubev/Safari-Extensions/tree/master/37signalsLaunchpads</string>
 </dict>
 </plist>

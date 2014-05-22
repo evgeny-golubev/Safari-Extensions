@@ -10,11 +10,11 @@
 			<key>Developer Identifier</key>
 			<string>3VDA3ZUKA4</string>
 			<key>CFBundleVersion</key>
-			<string>1.0.2</string>
+			<string>1.1</string>
 			<key>CFBundleShortVersionString</key>
-			<string>1.0.2</string>
+			<string>1.1</string>
 			<key>URL</key>
-			<string>https://github.com/m0nah/Safari-Extensions/raw/master/37signalsLaunchpad/37signalsLaunchpad.safariextz</string>
+			<string>https://github.com/evgeny-golubev/Safari-Extensions/raw/master/37signalsLaunchpad/37signalsLaunchpad.safariextz</string>
 		</dict>
 	</array>
 </dict>
