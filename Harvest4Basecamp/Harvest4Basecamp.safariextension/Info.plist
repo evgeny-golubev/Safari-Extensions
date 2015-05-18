@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Evgeny Golubev</string>
 	<key>Builder Version</key>
-	<string>9537.75.14</string>
+	<string>10600.7.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>Harvest Time Tracker for Basecamp</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.8</string>
+	<string>1.9</string>
 	<key>CFBundleVersion</key>
-	<string>1.8</string>
+	<string>1.9</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
@@ -34,6 +34,8 @@
 	</dict>
 	<key>Description</key>
 	<string>Integrate Harvest time tracking to Basecamp</string>
+	<key>DeveloperIdentifier</key>
+	<string>3VDA3ZUKA4</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>

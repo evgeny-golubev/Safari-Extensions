@@ -41,11 +41,10 @@ var popover_37signals = {
 
 			if(accounts.length){
 				accounts.each(function(index) {
-					var id = $(this).find('a:first').attr('href');
-					id = id.replace('/id/users/', '', 'gi');
-					id = id.replace('/goto', '', 'gi');
 					var title = $(this).find('a:first div.name div:first').text();
-					var href = '/users/' + id;
+					var href = $(this).find('a:first').attr('href');
+					id = href.replace('/users/', '', 'gi');
+
 					$('.service-list').append(
 						self.generate_link(
 							href,
@@ -59,7 +58,10 @@ var popover_37signals = {
 			$('body').append('</ul>');
 
 			self.popover_resize();
-		}, 'html');
+			self.reload();
+		}, 'html').fail(function() {
+			self.reload();
+		});
 	},
 
 	generate_link: function(url, title, type){
