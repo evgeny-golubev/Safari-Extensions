@@ -1,97 +1,101 @@
 var popover_37signals = {
 
-	popover_hide: function()
-	{
-		var popovers = safari.extension.popovers,
-			len = popovers.length;
+    body: null,
+    timeout: null,
+    launchpad: 'https://launchpad.37signals.com',
 
-		for (var i = len; i--;)
-		{
-			popovers[i].hide();
-		}
-	},
+    popover_hide: function () {
+        var popovers = safari.extension.popovers,
+            len = popovers.length;
 
-	popover_resize: function()
-	{
-		var popovers = safari.extension.popovers,
-			len = popovers.length;
+        for (var i = len; i--;) {
+            popovers[i].hide();
+        }
+    },
 
-		for (var i = len; i--;)
-		{
-			popovers[i].width = 210;
-			popovers[i].height = $('body').height()-15;
-		}
-	},
+    popover_resize: function () {
+        var popovers = safari.extension.popovers,
+            len = popovers.length;
 
-	popover_services: function(){
-		var self = this;
+        for (var i = len; i--;) {
+            popovers[i].width = 210;
+            popovers[i].height = $('body').height() - 15;
+        }
+    },
 
-		$('body').append(
-			'<ul class="service-list">'+
-				'<li class="sname" onclick="popover_37signals.popover_hide()">'+
-					'<a href="https://launchpad.37signals.com">' +
-						'<div class="left">37signals Launchpad</div>'+
-						'<div class="clear"></div>'+
-					'</a>'+
-				'</li>'
-		);
+    popover_services: function () {
+        var self = this;
 
-		$.get('https://launchpad.37signals.com/basecamp', function(data) {
-			var accounts = $(data).find('.accounts .account');
+        if (this.body.find('.service-list').length) {
+            this.body.find('.service-list').remove();
+        }
 
-			if(accounts.length){
-				accounts.each(function(index) {
-					var title = $(this).find('a:first div.name div:first').text();
-					var href = $(this).find('a:first').attr('href');
-					id = href.replace('/users/', '', 'gi');
+        $.get(this.launchpad + '/basecamp', function (data) {
+            var list = '<ul class="service-list">' +
+                '<li class="sname" onclick="popover_37signals.popover_hide()">' +
+                '<a href="' + self.launchpad + '">' +
+                '<div class="left">37signals Launchpad</div>' +
+                '<div class="clear"></div>' +
+                '</a>' +
+                '</li>';
 
-					$('.service-list').append(
-						self.generate_link(
-							href,
-							title,
-							id
-						)
-					);
-				});
-			}
+            var accounts = $(data).find('.accounts .account');
 
-			$('body').append('</ul>');
+            if (accounts.length) {
+                accounts.each(function () {
+                    var title = $(this).find('a:first div.name div:first').text();
+                    var href = $(this).find('a:first').attr('href');
+                    var id = href.replace('/users/', '', 'gi');
 
-			self.popover_resize();
-			self.reload();
-		}, 'html').fail(function() {
-			self.reload();
-		});
-	},
+                    list = list + self.generate_link(
+                            href,
+                            title,
+                            id
+                        );
+                });
+            } else {
+                list = '<li onclick="popover_37signals.popover_hide()">' +
+                    '<a href="' + self.launchpad + '">' +
+                    '<div class="left">Please, login to continue...</div>' +
+                    '<div class="clear"></div>' +
+                    '</a>' +
+                    '</li>';
+            }
 
-	generate_link: function(url, title, type){
-		return '<li onclick="popover_37signals.popover_hide()">'+
-					'<a href="https://launchpad.37signals.com'+url+'">'+
-						'<div class="left">'+title+'</div>'+
-						'<div class="right">'+type+'</div>'+
-						'<div class="clear"></div>'+
-					'</a>'+
-				'</li>';
-	},
+            self.body.append(list + '</ul>');
 
-	build: function()
-	{
-		this.popover_services();
-	},
+            self.popover_resize();
+        }, 'html').always(function () {
+            self.reload();
+        });
+    },
 
-	reload: function()
-	{
-		delay = setTimeout(function(){
-			popover_37signals.build();
-		}, 60000);
-	},
+    generate_link: function (url, title, type) {
+        return '<li onclick="popover_37signals.popover_hide()">' +
+            '<a href="' + self.launchpad + url + '">' +
+            '<div class="left">' + title + '</div>' +
+            '<div class="right">' + type + '</div>' +
+            '<div class="clear"></div>' +
+            '</a>' +
+            '</li>';
+    },
 
-	init: function()
-	{
-		this.build();
-	}
+    build: function () {
+        this.popover_services();
+    },
+
+    reload: function () {
+        this.timeout = setTimeout(function () {
+            popover_37signals.build();
+        }, 60000);
+    },
+
+    init: function () {
+        this.body = $('body');
+        this.build();
+    }
 };
 
-$(document).ready(function(){
-	popover_37signals.init();
+$(document).ready(function () {
+    popover_37signals.init();
 });
