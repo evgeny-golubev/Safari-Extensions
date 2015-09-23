@@ -72,7 +72,7 @@ var popover_37signals = {
 
     generate_link: function (url, title, type) {
         return '<li onclick="popover_37signals.popover_hide()">' +
-            '<a href="' + self.launchpad + url + '">' +
+            '<a href="' + this.launchpad + url + '">' +
             '<div class="left">' + title + '</div>' +
             '<div class="right">' + type + '</div>' +
             '<div class="clear"></div>' +
