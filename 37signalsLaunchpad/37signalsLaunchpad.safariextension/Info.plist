@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Evgeny Golubev</string>
 	<key>Builder Version</key>
-	<string>11601.2.4</string>
+	<string>11601.2.7.2</string>
 	<key>CFBundleDisplayName</key>
 	<string>37signals Launchpad</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>CFBundleVersion</key>
-	<string>1.4</string>
+	<string>1.6</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Popovers</key>

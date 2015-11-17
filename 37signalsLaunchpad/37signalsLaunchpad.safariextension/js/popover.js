@@ -45,12 +45,12 @@ var popover_37signals = {
                 accounts.each(function () {
                     var title = $(this).find('a:first div.name div:first').text();
                     var href = $(this).find('a:first').attr('href');
-                    var id = href.replace('/users/', '', 'gi');
+                    var bc = $(this).find('.new_label').text();
 
                     list = list + self.generate_link(
                             href,
                             title,
-                            id
+                            bc
                         );
                 });
             } else {
