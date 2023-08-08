@@ -1,4 +1,4 @@
-Extentions for Safari
+Extensions for Safari (UNSUPPORTED)
 =================
 
 ## Harvest time tracker for Basecamp
@@ -18,8 +18,3 @@ Extentions for Safari
 [More information about 37signals launchpad](https://github.com/evgeny-golubev/Safari-Extensions/tree/master/37signalsLaunchpad)
 
 [Install 37signals launchpad Safari extension](https://github.com/evgeny-golubev/Safari-Extensions/raw/master/37signalsLaunchpad/37signalsLaunchpad.safariextz)
-
-### Donate:
-If you liked this extentions, you can donate to support it!
-
-[![Paypal donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R3TQZNMYEJSL6)
